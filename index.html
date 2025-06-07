@@ -104,14 +104,18 @@
 
   <script>
     function startGame() {
-      const audio = document.getElementById("bgm");
-      audio.play().then(() => {
-        alert("🎵 音效已啟動，準備進入解謎！");
-        fadeToNext("intro", "stage1");
-      }).catch(err => {
-        alert("⚠️ 音效播放失敗，請確認已點擊允許播放或開啟聲音。");
-      });
-    }
+  const audio = document.getElementById("bgm");
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      alert("🎵 音效已啟動，準備進入解謎！");
+      fadeToNext("intro", "stage1");
+    }).catch(error => {
+      alert("⚠️ 音效播放失敗：請確認有點擊按鈕，或檢查是否靜音/限制自動播放。\n錯誤資訊：" + error);
+    });
+  }
+}
 
     function fadeToNext(currentId, nextId) {
       document.getElementById(currentId).classList.add("hidden");
