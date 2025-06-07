@@ -71,8 +71,8 @@
 
   <div class="game-container hidden" id="stage1">
     <h2>關卡一：記憶碎片</h2>
-    <p>你在夜市入口發現一張舊照片，上面日期為 <span class="clickable" onclick="revealHint('hint1')">X-1975-Z</span>。</p>
-    <p id="hint1" class="hidden">提示：1975 年有一場發生在西貢的事件，這與什麼大事有關？</p>
+    <p>你在夜市入口發現一張舊照片，上面日期為 <span class="clickable" onclick="revealHint('hint1')">opppppppppeeeeeennn</span>。</p>
+    <p id="hint1" class="hidden">提示：眼前這些被迷霧纏繞的攤商是從何時興建？</p>
     <input type="text" id="input1" placeholder="請輸入正確年份密碼">
     <button onclick="checkAnswer1()">提交</button>
     <p class="message" id="feedback1"></p>
@@ -80,8 +80,8 @@
 
   <div class="game-container hidden" id="stage2">
     <h2>關卡二：霧中聲影</h2>
-    <p>你聽見模糊聲音：「fo...fogg......fog」。背景模糊畫面中有一個藏起來的訊息。</p>
-    <p><span class="clickable" onclick="alert('💡 提示：你聽到的單字是與視線不清有關的三個字母。')">點此提示</span></p>
+    <p>你聽見模糊聲音：「hei....yo.....pe.......」。背景模糊畫面中有一個藏起來的訊息。</p>
+    <p><span class="clickable" onclick="alert('💡 提示：很台式發音的英文單詞正在妳耳邊繚繞。')">點此提示</span></p>
     <input type="text" id="input2" placeholder="請輸入正確單字密碼">
     <button onclick="checkAnswer2()">提交</button>
     <p class="message" id="feedback2"></p>
@@ -98,7 +98,7 @@
 
   <div class="game-container hidden" id="final">
     <h2>🎉 你成功走出夜市的迷霧 🎉</h2>
-    <p>你已蒐集記憶碎片：1975、FOG、SHADOW</p>
+    <p>你已蒐集記憶碎片：1963、HELP、SHADOW</p>
     <p>謎底揭曉：你所經歷的，不只是夜市，而是過去的某段人生記憶…</p>
   </div>
 
@@ -125,8 +125,8 @@
     function checkAnswer1() {
       const input = document.getElementById("input1").value.trim();
       const feedback = document.getElementById("feedback1");
-      if (input === "1975") {
-        feedback.innerText = "✅ 正確！你獲得第一片記憶碎片（1975）";
+      if (input === "1963") {
+        feedback.innerText = "✅ 正確！你獲得第一片記憶碎片（1963）";
         feedback.style.color = "lightgreen";
         setTimeout(() => fadeToNext("stage1", "stage2"), 2000);
       } else {
@@ -138,8 +138,8 @@
     function checkAnswer2() {
       const input = document.getElementById("input2").value.trim().toLowerCase();
       const feedback = document.getElementById("feedback2");
-      if (input === "fog") {
-        feedback.innerText = "✅ 正確！你獲得第二片記憶碎片（FOG）";
+      if (input === "help") {
+        feedback.innerText = "✅ 正確！你獲得第二片記憶碎片（HELP）";
         feedback.style.color = "lightgreen";
         setTimeout(() => fadeToNext("stage2", "stage3"), 2000);
       } else {
