@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通往夜市之路: 靜夜疑影</title>
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #111;
+      color: #f0f0f0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .game-container {
+      max-width: 600px;
+      margin: auto;
+      background: #222;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      transition: opacity 0.5s ease-in-out;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #666;
+    }
+    .message {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+    .clickable {
+      color: #7fffd4;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgm" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_0d38a05dc8.mp3?filename=creepy-ambient-142317.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="game-container" id="stage1">
+    <h1>【通往夜市之路】</h1>
+    <h2>關卡一：記憶碎片</h2>
+    <p>你在夜市入口發現一張舊照片，上面日期為 <span class="clickable" onclick="revealHint('hint1')">X-1975-Z</span>。</p>
+    <p id="hint1" class="hidden">提示：1975 年有一場發生在西貢的事件，這與什麼大事有關？</p>
+    <input type="text" id="input1" placeholder="請輸入正確年份密碼">
+    <button onclick="checkAnswer1()">提交</button>
+    <p class="message" id="feedback1"></p>
+  </div>
+
+  <div class="game-container hidden" id="stage2">
+    <h2>關卡二：霧中聲影</h2>
+    <p>你聽見模糊聲音：「fo...fogg......fog」。背景模糊畫面中有一個藏起來的訊息。</p>
+    <p><span class="clickable" onclick="alert('💡 提示：你聽到的單字是與視線不清有關的三個字母。')">點此提示</span></p>
+    <input type="text" id="input2" placeholder="請輸入正確單字密碼">
+    <button onclick="checkAnswer2()">提交</button>
+    <p class="message" id="feedback2"></p>
+  </div>
+
+  <div class="game-container hidden" id="stage3">
+    <h2>關卡三：倒影的記號</h2>
+    <p>你看到一面鏡子，裡面的字倒過來寫著：「wodahs」。</p>
+    <p>提示：請輸入正確英文單字，代表「影子、陰影」之意。</p>
+    <input type="text" id="input3" placeholder="請輸入正確英文單字">
+    <button onclick="checkAnswer3()">提交</button>
+    <p class="message" id="feedback3"></p>
+  </div>
+
+  <div class="game-container hidden" id="final">
+    <h2>🎉 你成功走出夜市的迷霧 🎉</h2>
+    <p>你已蒐集記憶碎片：1975、FOG、SHADOW</p>
+    <p>謎底揭曉：你所經歷的，不只是夜市，而是過去的某段人生記憶…</p>
+  </div>
+
+  <script>
+    function fadeToNext(currentId, nextId) {
+      document.getElementById(currentId).classList.add("hidden");
+      document.getElementById(nextId).classList.remove("hidden");
+    }
+
+    function revealHint(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function checkAnswer1() {
+      const input = document.getElementById("input1").value.trim();
+      const feedback = document.getElementById("feedback1");
+      if (input === "1975") {
+        feedback.innerText = "✅ 正確！你獲得第一片記憶碎片（1975）";
+        feedback.style.color = "lightgreen";
+        setTimeout(() => fadeToNext("stage1", "stage2"), 2000);
+      } else {
+        feedback.innerText = "❌ 錯誤，再試一次！";
+        feedback.style.color = "orangered";
+      }
+    }
+
+    function checkAnswer2() {
+      const input = document.getElementById("input2").value.trim().toLowerCase();
+      const feedback = document.getElementById("feedback2");
+      if (input === "fog") {
+        feedback.innerText = "✅ 正確！你獲得第二片記憶碎片（FOG）";
+        feedback.style.color = "lightgreen";
+        setTimeout(() => fadeToNext("stage2", "stage3"), 2000);
+      } else {
+        feedback.innerText = "❌ 錯誤，再試一次！";
+        feedback.style.color = "orangered";
+      }
+    }
+
+    function checkAnswer3() {
+      const input = document.getElementById("input3").value.trim().toLowerCase();
+      const feedback = document.getElementById("feedback3");
+      if (input === "shadow") {
+        feedback.innerText = "✅ 正確！你獲得第三片記憶碎片（SHADOW）";
+        feedback.style.color = "lightgreen";
+        setTimeout(() => fadeToNext("stage3", "final"), 2000);
+      } else {
+        feedback.innerText = "❌ 錯誤，再試一次！";
+        feedback.style.color = "orangered";
+      }
+    }
+  </script>
+</body>
+</html>
