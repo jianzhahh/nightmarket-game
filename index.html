@@ -36,8 +36,6 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1rem;
-      margin-bottom: 1rem;
     }
     button:hover {
       background-color: #666;
@@ -57,19 +55,11 @@
   </style>
 </head>
 <body>
-  <!-- 音效 -->
-  <audio id="bgm" loop>
+  <audio id="bgm" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_0d38a05dc8.mp3?filename=creepy-ambient-142317.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 開始遊戲按鈕 -->
-  <div class="game-container" id="intro">
-    <h1>通往夜市之路：靜夜疑影</h1>
-    <p>這是一場潛入記憶深處的懸疑解謎旅程，請戴上耳機並點擊開始。</p>
-    <button onclick="startGame()">🎧 開始遊戲並播放音效</button>
-  </div>
-
-  <div class="game-container hidden" id="stage1">
+  <div class="game-container" id="stage1">
     <h2>關卡一：記憶碎片</h2>
     <p>你在夜市入口發現一張舊照片，上面日期為 <span class="clickable" onclick="revealHint('hint1')">opppppppppeeeeeennn</span>。</p>
     <p id="hint1" class="hidden">提示：眼前這些被迷霧纏繞的攤商是從何時興建？</p>
@@ -103,20 +93,6 @@
   </div>
 
   <script>
-    function startGame() {
-  const audio = document.getElementById("bgm");
-  const playPromise = audio.play();
-
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      alert("🎵 音效已啟動，準備進入解謎！");
-      fadeToNext("intro", "stage1");
-    }).catch(error => {
-      alert("⚠️ 音效播放失敗：請確認有點擊按鈕，或檢查是否靜音/限制自動播放。\n錯誤資訊：" + error);
-    });
-  }
-}
-
     function fadeToNext(currentId, nextId) {
       document.getElementById(currentId).classList.add("hidden");
       document.getElementById(nextId).classList.remove("hidden");
